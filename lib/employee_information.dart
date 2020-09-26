@@ -19,38 +19,36 @@ class EmployeeInformation extends StatelessWidget {
     );
   }
 
-  List<Widget> _renderEmployee(Employee employee) {
-    var result = List<Widget>();
+  List<Container> _renderEmployee(Employee employee) {
+    var result = List<Container>();
 
-    result.add(
-        _createBannerImage("https://devao.me/images/white-logo.png", 140.0));
+    result
+    ..add(_createBannerImage("https://devao.me/images/white-logo.png", 140.0))
+    ..add(_createTitle("Role"))
+    ..add(_createSubtext(employee.role))
+    ..add(_createTitle("Skills"));
 
-    result.add(_createTitle("Role"));
-    result.add(_createSubtext(employee.role));
+    employee.skills.forEach((skill) => result.add(_createSubtext(skill)));
 
-    result.add(_createTitle("Skills"));
-    for (int i = 0; i < employee.skills.length; i++) {
-      result.add(_createSubtext(employee.skills[i]));
-    }
-
-    result.add(_createTitle("Contact"));
-    result.add(_createSubtext(employee.email));
+    result
+    ..add(_createTitle("Contact"))
+    ..add(_createSubtext(employee.email));
     return result;
   }
 
-  Widget _createBannerImage(String url, double height) {
+  Container _createBannerImage(String url, double height) {
     return Container(
         child: Image.network(url, fit: BoxFit.fitWidth),
         decoration: BoxDecoration(color: Colors.black));
   }
 
-  Widget _createTitle(String title) {
+  Container _createTitle(String title) {
     return Container(
         padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 10.0),
         child: Text(title, style: Styles.headerStyle));
   }
 
-  Widget _createSubtext(String subtext) {
+  Container _createSubtext(String subtext) {
     return Container(
         padding: EdgeInsets.fromLTRB(25.0, 15.0, 25.0, 15.0),
         child: Text(subtext, style: Styles.subtextStyle));

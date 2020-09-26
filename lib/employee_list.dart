@@ -17,7 +17,7 @@ class EmployeeList extends StatelessWidget {
             itemBuilder: _listViewItemBuilder));
   }
 
-  Widget _listViewItemBuilder(BuildContext context, int index) {
+  ListTile _listViewItemBuilder(BuildContext context, int index) {
     var employee = this.employees[index];
 
     return ListTile(
@@ -32,27 +32,14 @@ class EmployeeList extends StatelessWidget {
         MaterialPageRoute(builder: (context) => EmployeeInformation(employee)));
   }
 
-  Widget _itemThumbNail(employee) {
+  Container _itemThumbNail(employee) {
     return Container(
       constraints: BoxConstraints.tightFor(width: 25),
       child: Image.network("https://devao.me/images/icons/favicon.png"),
     );
   }
 
-  Widget _itemTitle(employee) {
+  Text _itemTitle(employee) {
     return Text(employee.name, style: Styles.subtextStyle);
   }
 }
-
-
-
-// Widget _devAOSlashes() {return Container(
-  //   constraints: BoxConstraints.tightFor(width: 25, height: 50),
-  //   child: Row(
-  //     mainAxisAlignment: MainAxisAlignment.start,
-  //     children: <Widget>[
-  //     Flexible(fit: FlexFit.loose, flex: 1, child: Text("/", style: TextStyle(color: Styles.lightBlue))),
-  //     Flexible(fit: FlexFit.loose, flex: 1, child: Text("/", style: TextStyle(color: Styles.darkBlue))),
-  //     Flexible(fit: FlexFit.loose, flex: 1, child: Text("/", style: TextStyle(color: Styles.lightGreen))),
-  //     ]));
-  // }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:userInterface/api/mock_employee.dart';
-import 'package:userInterface/employee_list.dart';
+import 'package:userInterface/homepage.dart';
 import 'package:userInterface/models/employee.dart';
 
 void main() => runApp(MyApp());
@@ -24,15 +24,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: FutureBuilder<List<Employee>>(
-            future: futureEmployees,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return EmployeeList(snapshot.data);
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              return CircularProgressIndicator();
-            }));
+        home: homePage(futureEmployees));
   }
 }
